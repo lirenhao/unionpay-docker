@@ -1,0 +1,79 @@
+version: '3'
+
+services:
+
+  aggservice:
+    image: cuitaocrazy/agg-service:1.0.2
+    environment:
+      - HOST=zookeeper:2181
+      - AGG_SCRIPT_DIR=/opt/aggservice/src/agg_scripts
+      - RESET_OFFSET_AGG_SCRIPT_DIR=/opt/aggservice/reset_offset_agg_scripts
+      - GRAPHQL_SCRIPT_DIR=/opt/aggservice/src/graphql_scripts
+    volumes:
+      - ./agg/agg_scripts:/opt/aggservice/src/agg_scripts
+      - ./agg/reset_offset_agg_scripts:/opt/aggservice/reset_offset_agg_scripts
+      - ./agg/graphql_scripts:/opt/aggservice/src/graphql_scripts
+    ports:
+      - "9002:8080" 
+
+  plantask:
+    image: lirenhao/plantask:1.0.0
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+    ports:
+      - "9003:8080" 
+
+  alipay:
+    image: lirenhao/alipay:1.0.0
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro 
+    ports:
+      - "9004:8080" 
+
+  test:
+    image: test
+    ports:
+      - "9005:8080" 
+  # alimerstay:
+  #   build: ./alimerstay
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #     - mongodb
+  #     - configserver
+
+  # wxmerstay:
+  #   build: ./wxmerstay
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #     - mongodb
+  #     - configserver    
+
+  # wechat:
+  #   build: ./wechat
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   ports:
+  #     - "9002:8080"  
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #     - mongodb
+  #     - configserver
+
+  # userscan:
+  #   build: ./userscan
+  #   ports:
+  #     - "9001:8080"
+  #   environment:
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #   depends_on:
+  #     - zookeeper
+  #     - kafka
+  #     - mongodb
+  #     - configserver
