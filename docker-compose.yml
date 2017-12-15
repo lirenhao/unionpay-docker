@@ -1,79 +1,63 @@
 version: '3'
 
+networks:
+  default:
+    external:
+      name: unionPay
+
 services:
 
   aggservice:
     image: cuitaocrazy/agg-service:1.0.2
     environment:
       - HOST=zookeeper:2181
-      - AGG_SCRIPT_DIR=/opt/aggservice/src/agg_scripts
+      - AGG_SCRIPT_DIR=/opt/aggservice/agg_scripts
       - RESET_OFFSET_AGG_SCRIPT_DIR=/opt/aggservice/reset_offset_agg_scripts
-      - GRAPHQL_SCRIPT_DIR=/opt/aggservice/src/graphql_scripts
+      - GRAPHQL_SCRIPT_DIR=/opt/aggservice/graphql_scripts
     volumes:
-      - ./agg/agg_scripts:/opt/aggservice/src/agg_scripts
+      - ./agg/agg_scripts:/opt/aggservice/agg_scripts
       - ./agg/reset_offset_agg_scripts:/opt/aggservice/reset_offset_agg_scripts
-      - ./agg/graphql_scripts:/opt/aggservice/src/graphql_scripts
-    ports:
-      - "9002:8080" 
+      - ./agg/graphql_scripts:/opt/aggservice/graphql_scripts
 
   plantask:
-    image: lirenhao/plantask:1.0.0
+    image: lirenhao/plantask:1.0.1
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+
+  alipay:
+    image: lirenhao/alipay:1.0.1
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
       - "9003:8080" 
 
-  alipay:
-    image: lirenhao/alipay:1.0.0
+  wechat:
+    image: 1121807592/wxpay:1.0.1
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+    ports:
+      - "9002:8080" 
+
+  alimerstay:
+    image: anatman/alipaymchenter:v1.0.0
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+
+  wxmerstay:
+    image: anatman/wechatmchenter:v1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=pro 
+
+  userscan:
+    image: 200342/userscan:1.0.1
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
+    ports:
+      - "9001:8080" 
+
+  bankmanger:
+    image: tianyuan/bankservicepc:v1.0.1
+    environment:
+      - SPRING_PROFILES_ACTIVE=pro
     ports:
       - "9004:8080" 
-
-  test:
-    image: test
-    ports:
-      - "9005:8080" 
-  # alimerstay:
-  #   build: ./alimerstay
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #   depends_on:
-  #     - zookeeper
-  #     - kafka
-  #     - mongodb
-  #     - configserver
-
-  # wxmerstay:
-  #   build: ./wxmerstay
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #   depends_on:
-  #     - zookeeper
-  #     - kafka
-  #     - mongodb
-  #     - configserver    
-
-  # wechat:
-  #   build: ./wechat
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #   ports:
-  #     - "9002:8080"  
-  #   depends_on:
-  #     - zookeeper
-  #     - kafka
-  #     - mongodb
-  #     - configserver
-
-  # userscan:
-  #   build: ./userscan
-  #   ports:
-  #     - "9001:8080"
-  #   environment:
-  #     - SPRING_PROFILES_ACTIVE=dev
-  #   depends_on:
-  #     - zookeeper
-  #     - kafka
-  #     - mongodb
-  #     - configserver
