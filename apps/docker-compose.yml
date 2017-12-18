@@ -11,9 +11,6 @@ services:
     image: cuitaocrazy/agg-service:1.0.2
     environment:
       - HOST=zookeeper:2181
-      - AGG_SCRIPT_DIR=/opt/aggservice/agg_scripts
-      - RESET_OFFSET_AGG_SCRIPT_DIR=/opt/aggservice/reset_offset_agg_scripts
-      - GRAPHQL_SCRIPT_DIR=/opt/aggservice/graphql_scripts
     volumes:
       - ./agg/agg_scripts:/opt/aggservice/agg_scripts
       - ./agg/reset_offset_agg_scripts:/opt/aggservice/reset_offset_agg_scripts
@@ -32,7 +29,7 @@ services:
       - "9003:8080" 
 
   wechat:
-    image: 1121807592/wxpay:1.0.1
+    image: 1121807592/wxpay:1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
@@ -60,4 +57,4 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
-      - "9004:8080" 
+      - "9004:8080"
