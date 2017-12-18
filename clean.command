@@ -1,4 +1,4 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-docker stack down unionPay 
-rm -rf ./kafka ./mongo ./mysql
+docker stack down unionBase
+docker stack down unionApps
