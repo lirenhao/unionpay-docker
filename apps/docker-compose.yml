@@ -36,12 +36,12 @@ services:
       - "9002:8080" 
 
   alimerstay:
-    image: anatman/alipaymchenter:v1.0.0
+    image: anatman/alipaymchenter:1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=pro
 
   wxmerstay:
-    image: anatman/wechatmchenter:v1.0.0
+    image: anatman/wechatmchenter:1.0.0
     environment:
       - SPRING_PROFILES_ACTIVE=pro 
 
@@ -52,7 +52,7 @@ services:
     ports:
       - "9001:8080" 
 
-  bankmanger:
+  bankmanager:
     image: tianyuan/bankservicepc:1.0.3
     environment:
       - SPRING_PROFILES_ACTIVE=pro
