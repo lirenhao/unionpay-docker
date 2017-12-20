@@ -46,7 +46,7 @@ services:
       - SPRING_PROFILES_ACTIVE=pro 
 
   userscan:
-    image: 200342/userscan:1.0.1
+    image: 200342/userscan:1.0.2
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:

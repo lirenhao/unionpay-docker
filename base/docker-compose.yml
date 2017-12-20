@@ -62,3 +62,5 @@ services:
       - SPRING_CONFIG_LOCATION=/usr/src/config/application.properties
     volumes:
       - ./config:/usr/src/config
+    ports:
+      - "9005:8080"
