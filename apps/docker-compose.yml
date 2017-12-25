@@ -8,9 +8,10 @@ networks:
 services:
 
   aggservice:
-    image: cuitaocrazy/agg-service:1.0.2
+    image: cuitaocrazy/agg-service:1.1.0
     environment:
       - HOST=zookeeper:2181
+      - NODE_ENV=dev
     volumes:
       - ./agg/agg_scripts:/opt/aggservice/agg_scripts
       - ./agg/reset_offset_agg_scripts:/opt/aggservice/reset_offset_agg_scripts
@@ -29,7 +30,7 @@ services:
       - "9003:8080" 
 
   wechat:
-    image: 1121807592/wxpay:1.0.0
+    image: 1121807592/wxpay:1.0.2
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
@@ -46,14 +47,14 @@ services:
       - SPRING_PROFILES_ACTIVE=pro 
 
   userscan:
-    image: 200342/userscan:1.0.2
+    image: 200342/userscan:1.0.3
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
       - "9001:8080" 
 
   bankmanager:
-    image: tianyuan/bankservicepc:1.0.3
+    image: tianyuan/bankservicepc:1.0.6
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
