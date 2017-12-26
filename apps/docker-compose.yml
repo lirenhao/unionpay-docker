@@ -54,7 +54,7 @@ services:
       - "9001:8080" 
 
   bankmanager:
-    image: tianyuan/bankservicepc:1.0.6
+    image: tianyuan/bankservicepc:1.0.7
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
