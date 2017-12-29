@@ -29,7 +29,7 @@ services:
   mongo:
     image: mongo
     volumes:
-      - mongo:/data
+      - mongo:/data/db
   
   manager:
     image: mongo-express
