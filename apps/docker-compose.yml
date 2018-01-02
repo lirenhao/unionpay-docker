@@ -47,14 +47,14 @@ services:
       - SPRING_PROFILES_ACTIVE=pro 
 
   userscan:
-    image: 200342/userscan:1.0.3
+    image: 200342/userscan:1.0.5
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
       - "9001:8080" 
 
   bankmanager:
-    image: tianyuan/bankservicepc:1.0.7
+    image: lirenhao/manager:1.0.1
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
