@@ -200,7 +200,7 @@ auth-token-ttl: 15
 enable-log-file: true
 log-file-path: /var/log/restheart.log
 enable-log-console: true
-log-level: DEBUG
+log-level: WARN
 requests-log-level: 1
 metrics-gathering-level: DATABASE
 
