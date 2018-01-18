@@ -8,7 +8,7 @@ networks:
 services:
 
   aggservice:
-    image: cuitaocrazy/agg-service:1.1.0
+    image: cuitaocrazy/agg-service
     environment:
       - HOST=zookeeper:2181
       - NODE_ENV=dev
@@ -51,10 +51,10 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
-      - "9001:8080" 
+      - "9001:8080"
 
   bankmanager:
-    image: lirenhao/manager:1.0.1
+    image: tianyuan/bankservicepc:1.0.13
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
