@@ -11,7 +11,7 @@ services:
     image: cuitaocrazy/agg-service
     environment:
       - HOST=zookeeper:2181
-      - NODE_ENV=dev
+      - NODE_ENV=production
     volumes:
       - ./agg/agg_scripts:/opt/aggservice/agg_scripts
       - ./agg/reset_offset_agg_scripts:/opt/aggservice/reset_offset_agg_scripts
@@ -47,7 +47,7 @@ services:
       - SPRING_PROFILES_ACTIVE=pro 
 
   userscan:
-    image: 200342/userscan:1.0.5
+    image: 200342/userscan:1.0.6
     environment:
       - SPRING_PROFILES_ACTIVE=pro
     ports:
