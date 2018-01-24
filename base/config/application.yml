@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: unionPay-config-server
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: kafka
+          defaultBrokerPort: 9092
+          zkNodes: zookeeper
+          defaultZkPort: 2181
+          autoCreateTopics: true
+          autoAddPartitions: true
+    config:
+      server:
+        native:
+          search-locations: file:/usr/src/config/unionpay-config-repo
+  profiles:
+    active: native
