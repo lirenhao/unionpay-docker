@@ -13,7 +13,7 @@ spring:
           autoAddPartitions: true
     config:
       server:
-        native:
-          search-locations: file:/usr/src/config/unionpay-config-repo
-  profiles:
-    active: native
+        git:
+          uri: file:///home/lirenhao/unionPay/unionpay-config-repo
+          username: lirenhao
+          password: liRenhao0912
